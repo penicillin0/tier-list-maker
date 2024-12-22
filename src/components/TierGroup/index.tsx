@@ -33,10 +33,7 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div
-        className={styles.rank}
-        style={{ backgroundColor: group.color }}
-      >
+      <div className={styles.rank} style={{ backgroundColor: group.color }}>
         {group.rank}
       </div>
       <div className={styles.items}>

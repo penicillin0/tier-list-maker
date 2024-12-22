@@ -53,10 +53,7 @@ export default function TierList() {
         >
           アイテム追加
         </button>
-        <button
-          className={styles.button}
-          onClick={handleSaveImage}
-        >
+        <button className={styles.button} onClick={handleSaveImage}>
           画像保存
         </button>
       </div>
