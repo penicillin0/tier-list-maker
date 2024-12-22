@@ -64,7 +64,7 @@ export const useTierList = () => {
     saveTierList(newTierList)
   }
 
-  const removeALLItem = () => {
+  const removeAllItem = () => {
     const newTierList = {
       ...tierList,
       groups: tierList.groups.map((group) => ({
@@ -111,7 +111,7 @@ export const useTierList = () => {
     tierList,
     addItem,
     removeItem,
-    removeALLItem,
+    removeAllItem,
     moveItem,
   }
 }

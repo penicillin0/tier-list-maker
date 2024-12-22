@@ -24,6 +24,20 @@
   }
 }
 
+.deleteButton {
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #ff6666;
+  }
+}
+
 .tierList {
   background-color: #2a2a2a;
   padding: 16px;

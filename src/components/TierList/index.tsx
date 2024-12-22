@@ -5,7 +5,8 @@ import styles from './styles.module.scss'
 import html2canvas from 'html2canvas'
 
 export default function TierList() {
-  const { tierList, addItem, removeItem, moveItem } = useTierList()
+  const { tierList, addItem, removeItem, moveItem, removeAllItem } =
+    useTierList()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const tierListRef = useRef<HTMLDivElement>(null)
 
@@ -71,6 +72,16 @@ export default function TierList() {
         </button>
         <button className={styles.button} onClick={handleSaveImage}>
           画像保存
+        </button>
+        <button
+          className={styles.deleteButton}
+          onClick={() => {
+            if (window.confirm('すべてのアイテムを削除しますか？')) {
+              removeAllItem()
+            }
+          }}
+        >
+          すべて削除
         </button>
       </div>
       <div ref={tierListRef} className={styles.tierList}>
