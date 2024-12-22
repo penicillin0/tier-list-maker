@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { TierGroup as TierGroupType, TierItem, TierRank } from '@/types'
 import styles from './styles.module.scss'
+import Image from 'next/image'
 
 interface Props {
   group: TierGroupType
@@ -44,7 +45,12 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
             draggable
             onDragStart={(e) => handleDragStart(e, item)}
           >
-            <img src={item.imageUrl} alt="" />
+            <Image
+              src={item.imageUrl}
+              alt="Tier Item"
+              width={100}
+              height={100}
+            />
             <button
               className={styles.removeButton}
               onClick={() => onRemoveItem(item.id)}
