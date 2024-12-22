@@ -1,4 +1,5 @@
 import FAQ from '@/components/FAQ'
+import { Footer } from '@/components/Footer'
 import TierList from '@/components/TierList'
 import UsageGuide from '@/components/UsageGuide'
 import styles from '@/styles/Home.module.scss'
@@ -34,6 +35,7 @@ export default function Home() {
         <TierList />
         <UsageGuide />
         <FAQ />
+        <Footer />
       </div>
     </>
   )
