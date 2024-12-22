@@ -1,0 +1,40 @@
+.section {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: var(--border-radius);
+}
+
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.faqList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.faqItem {
+  padding: 1rem;
+  background-color: #2a2a2a;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #333333;
+  }
+}
+
+.question {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.answer {
+  color: #cccccc;
+  line-height: 1.6;
+}
