@@ -1,5 +1,6 @@
 import FAQ from '@/components/FAQ'
 import TierList from '@/components/TierList'
+import UsageGuide from '@/components/UsageGuide'
 import styles from '@/styles/Home.module.scss'
 import Head from 'next/head'
 
@@ -20,6 +21,7 @@ export default function Home() {
       <div className={styles.container}>
         <h1 className={styles.title}>Tier List Manager</h1>
         <TierList />
+        <UsageGuide />
         <FAQ />
       </div>
     </>
