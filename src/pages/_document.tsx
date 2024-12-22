@@ -10,6 +10,10 @@ export default function Document() {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
+        <meta
+          name="google-site-verification"
+          content="7Ghxx-EskqMs_Kj71i1-f-u0-p92v-SEodaYYx1Njyo"
+        />
       </Head>
 
       <body>
