@@ -64,6 +64,18 @@ export const useTierList = () => {
     saveTierList(newTierList)
   }
 
+  const removeALLItem = () => {
+    const newTierList = {
+      ...tierList,
+      groups: tierList.groups.map((group) => ({
+        ...group,
+        items: [],
+      })),
+    }
+
+    saveTierList(newTierList)
+  }
+
   // アイテムを移動
   const moveItem = (itemId: string, fromRank: TierRank, toRank: TierRank) => {
     if (fromRank === toRank) return
@@ -99,6 +111,7 @@ export const useTierList = () => {
     tierList,
     addItem,
     removeItem,
+    removeALLItem,
     moveItem,
   }
 }
