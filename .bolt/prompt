@@ -1,0 +1,11 @@
+# Packages
+
+パッケージマネージャーは yarn を使ってください。
+TypeScript の最新バージョンを使ってください。
+React 18 系の最新バージョンを使ってください。
+Next.js 14 系の最新バージョンを使ってください。
+Next.js は Pages Router で構築してください。
+スタイリングは CSS Modules で行います。sass を使ってください。
+アイコンは Remix Icon を使います。
+ESLint と Prettier でコードを静的解析・フォーマットします。
+
