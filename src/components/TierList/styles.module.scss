@@ -1,7 +1,7 @@
 .container {
-  min-width: 100%;
+  width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 20px;
 }
 
 .controls {
