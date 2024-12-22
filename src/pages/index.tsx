@@ -17,6 +17,17 @@ export default function Home() {
           name="keywords"
           content="Tier表作成, グループ分け, 無料ツール, オンラインアプリ"
         />
+
+        <meta property="og:title" content="Tier表作成ツール" />
+        <meta
+          property="og:description"
+          content="簡単にTier表を作成できる無料ツール。"
+        />
+        <meta property="og:image" content="/og-image.png" />
+        {/* TODO: 本番環境のURLに変更 */}
+        {/* <meta property="og:url" content="https://example.com" /> */}
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>Tier List Manager</h1>
