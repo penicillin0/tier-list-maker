@@ -1,0 +1,51 @@
+.section {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: var(--border-radius);
+}
+
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.overview {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.steps {
+  display: grid;
+  gap: 2rem;
+}
+
+.step {
+  h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 1.5rem;
+
+    li {
+      position: relative;
+      margin-bottom: 0.5rem;
+      color: #cccccc;
+      line-height: 1.6;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: -1rem;
+        color: #4a4a4a;
+      }
+    }
+  }
+}
