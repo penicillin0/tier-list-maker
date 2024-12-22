@@ -66,6 +66,8 @@ export const useTierList = () => {
 
   // アイテムを移動
   const moveItem = (itemId: string, fromRank: TierRank, toRank: TierRank) => {
+    if (fromRank === toRank) return
+
     const fromGroup = tierList.groups.find((g) => g.rank === fromRank)
     const item = fromGroup?.items.find((i) => i.id === itemId)
 
