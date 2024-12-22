@@ -16,7 +16,23 @@ export default function TierList() {
     const reader = new FileReader()
     reader.onload = (e) => {
       const imageUrl = e.target?.result as string
-      addItem(imageUrl)
+      const img = new Image()
+      img.src = imageUrl
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return
+
+        // 画像のリサイズ
+        const maxWidth = 800
+        const scaleSize = maxWidth / img.width
+        canvas.width = maxWidth
+        canvas.height = img.height * scaleSize
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        const compressedImageUrl = canvas.toDataURL('image/jpeg', 0.8) // 圧縮率70%でJPEG形式に変換
+        addItem(compressedImageUrl)
+      }
     }
     reader.readAsDataURL(file)
   }
