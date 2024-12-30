@@ -61,9 +61,29 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     e.preventDefault()
     e.stopPropagation()
     const rect = (e.target as HTMLElement).getBoundingClientRect()
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    const menuWidth = 200 // メニューの幅
+    const menuHeight = 250 // メニューの推定高さ
+
+    // 横方向の位置調整
+    let x = rect.left
+    if (x + menuWidth > viewportWidth) {
+      x = viewportWidth - menuWidth - 16 // 右端から16px余白
+    }
+    if (x < 16) {
+      x = 16 // 左端から16px余白
+    }
+
+    // 縦方向の位置調整
+    let y = rect.bottom + window.scrollY
+    if (y + menuHeight > window.scrollY + viewportHeight) {
+      y = rect.top + window.scrollY - menuHeight // メニューを上に表示
+    }
+
     setMenuPosition({
-      x: rect.left,
-      y: rect.bottom + window.scrollY,
+      x,
+      y,
     })
     setSelectedItem(itemId)
     setShowMobileMenu(true)
