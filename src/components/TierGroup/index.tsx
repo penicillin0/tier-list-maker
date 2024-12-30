@@ -3,6 +3,7 @@ import { TierGroup as TierGroupType, TierItem, TierRank } from '@/types'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import { isMobile } from '@/utils/device'
+import { useDoubleTap } from '@/hooks/useDoubleTap'
 
 interface Props {
   group: TierGroupType
@@ -15,10 +16,7 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
-  const lastTapRef = useRef<{ time: number; id: string | null }>({
-    time: 0,
-    id: null,
-  })
+  const handleDoubleTap = useDoubleTap()
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
@@ -35,7 +33,7 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     e.dataTransfer.setData('text/plain', `${item.id},${group.rank}`)
   }
 
-  const handleLongPress = (
+  const openMobileMenu = (
     e: React.TouchEvent | React.MouseEvent,
     itemId: string
   ) => {
@@ -57,23 +55,6 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     }
   }
 
-  const handleTap = (e: React.TouchEvent, item: TierItem) => {
-    e.preventDefault()
-    const now = Date.now()
-    const DOUBLE_TAP_DELAY = 300
-
-    if (
-      lastTapRef.current.time > now - DOUBLE_TAP_DELAY &&
-      lastTapRef.current.id === item.id
-    ) {
-      // Double tap detected
-      handleLongPress(e, item.id)
-      lastTapRef.current = { time: 0, id: null }
-    } else {
-      lastTapRef.current = { time: now, id: item.id }
-    }
-  }
-
   return (
     <>
       <div
@@ -91,11 +72,15 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
               key={item.id}
               className={styles.item}
               draggable={!isMobile()}
-              onDragStart={(e) => !isMobile() && handleDragStart(e, item)}
-              onTouchStart={(e) => handleTap(e, item)}
+              onClick={(e) => {
+                if (isMobile()) {
+                  handleDoubleTap(() => openMobileMenu(e, item.id))
+                }
+              }}
+              onDragStart={(e) => handleDragStart(e, item)}
               onContextMenu={(e) => {
                 e.preventDefault()
-                handleLongPress(e, item.id)
+                openMobileMenu(e, item.id)
               }}
             >
               <Image
