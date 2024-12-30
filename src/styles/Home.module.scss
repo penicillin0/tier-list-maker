@@ -16,6 +16,10 @@
   span {
     color: #0070f3;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 }
 
 .shareLink {
