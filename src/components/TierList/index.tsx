@@ -92,7 +92,9 @@ export default function TierList() {
         </button>
       </div>
       {showMobileHint && (
-        <p className={styles.mobileHint}>ダブルタップで移動できるよ！</p>
+        <p className={styles.mobileHint}>
+          ダブルタップで移動や削除ができるよ！
+        </p>
       )}
       <div ref={tierListRef} className={styles.tierList}>
         {tierList.groups.map((group) => (
