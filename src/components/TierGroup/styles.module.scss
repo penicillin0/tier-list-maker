@@ -57,10 +57,18 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
+
+    @media (hover: hover) {
+      &:hover {
+        display: flex;
+      }
+    }
   }
 
-  &:hover .removeButton {
-    display: flex;
+  @media (hover: hover) {
+    &:hover .removeButton {
+      display: flex;
+    }
   }
 }
 
