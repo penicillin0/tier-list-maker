@@ -30,6 +30,7 @@ export default function Home() {
         {/* TODO: 本番環境のURLに変更 */}
         {/* <meta property="og:url" content="https://example.com" /> */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ティア表メーカー" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className={styles.container}>
