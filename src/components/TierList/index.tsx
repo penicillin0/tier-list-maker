@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useTierList } from '@/hooks/useTierList'
 import TierGroup from '../TierGroup'
 import styles from './styles.module.scss'
@@ -6,10 +6,16 @@ import { isMobile } from '@/utils/device'
 import html2canvas from 'html2canvas'
 
 export default function TierList() {
+  const [showMobileHint, setShowMobileHint] = useState(false)
   const { tierList, addItem, removeItem, moveItem, removeAllItem } =
     useTierList()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const tierListRef = useRef<HTMLDivElement>(null)
+
+  // MEMO: モバイルの場合のみヒントを表示、Hydration Errorを回避するためにuseEffectで実行
+  useEffect(() => {
+    setShowMobileHint(isMobile())
+  }, [])
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -85,7 +91,7 @@ export default function TierList() {
           すべて削除
         </button>
       </div>
-      {isMobile() && (
+      {showMobileHint && (
         <p className={styles.mobileHint}>ダブルタップで移動できるよ！</p>
       )}
       <div ref={tierListRef} className={styles.tierList}>
