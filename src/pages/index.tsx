@@ -27,8 +27,10 @@ export default function Home() {
           content="簡単にTier表を作成できるティア表無料ツール。グループ分けし、全体を画像として保存する機能もある。"
         />
         <meta property="og:image" content="/og-image.png" />
-        {/* TODO: 本番環境のURLに変更 */}
-        {/* <meta property="og:url" content="https://example.com" /> */}
+        <meta
+          property="og:url"
+          content="https://tier-list-maker-two.vercel.app/"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="ティア表メーカー" />
         <meta name="twitter:card" content="summary_large_image" />
