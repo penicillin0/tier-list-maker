@@ -9,20 +9,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Tier表作成ツール | 簡単で便利な無料Webアプリ</title>
+        <title>
+          Tier表作成メーカー | 無料でティア表が作成できるツールサイト
+        </title>
         <meta
           name="description"
-          content="Tier表を簡単に作成・管理できる無料ツール。画像をドラッグアンドドロップでグループ分けし、全体を画像として保存する機能も搭載。"
+          content="Tier表を簡単に作成・管理できるティア表メーカー。あなたのティアをグループ分けし、全体を画像として保存する機能もある無料アプリ。"
         />
         <meta
           name="keywords"
-          content="Tier表作成, グループ分け, 無料ツール, オンラインアプリ"
+          content="Tier表作成, グループ分け, 無料ツール, オンラインアプリ, ティア表メーカー, ティア表作成"
         />
 
         <meta property="og:title" content="Tier表作成ツール" />
         <meta
           property="og:description"
-          content="簡単にTier表を作成できる無料ツール。"
+          content="簡単にTier表を作成できるティア表無料ツール。グループ分けし、全体を画像として保存する機能もある。"
         />
         <meta property="og:image" content="/og-image.png" />
         {/* TODO: 本番環境のURLに変更 */}
