@@ -17,3 +17,26 @@
     color: #0070f3;
   }
 }
+
+.shareLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #2a2a2a;
+    border-color: #666;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  i {
+    font-size: 1.2rem;
+  }
+}

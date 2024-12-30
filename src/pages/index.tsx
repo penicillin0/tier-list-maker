@@ -4,8 +4,14 @@ import TierList from '@/components/TierList'
 import UsageGuide from '@/components/UsageGuide'
 import styles from '@/styles/Home.module.scss'
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function Home() {
+  const shareText = encodeURIComponent(
+    'Tier表作成メーカー https://tier-list-maker-two.vercel.app/ #Tier表メーカー #ティア表メーカー'
+  )
+  const twitterShareUrl = `https://x.com/intent/post?text=${shareText}`
+
   return (
     <>
       <Head>
@@ -37,6 +43,14 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>ティア表(Tier表)メーカー</h1>
+        <Link
+          href={twitterShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.shareLink}
+        >
+          <i className="ri-twitter-x-line" /> Xでシェア
+        </Link>
         <TierList />
         <UsageGuide />
         <FAQ />
