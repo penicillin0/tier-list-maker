@@ -72,11 +72,11 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
               key={item.id}
               className={styles.item}
               draggable={!isMobile()}
-              onClick={(e) => {
-                if (isMobile()) {
-                  handleDoubleTap(() => openMobileMenu(e, item.id))
-                }
-              }}
+              onTouchStart={
+                isMobile()
+                  ? (e) => handleDoubleTap(() => openMobileMenu(e, item.id))
+                  : undefined
+              }
               onDragStart={(e) => handleDragStart(e, item)}
               onContextMenu={(e) => {
                 e.preventDefault()
