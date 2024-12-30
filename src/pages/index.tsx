@@ -33,7 +33,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className={styles.container}>
-        <h1 className={styles.title}>Tier List Maker</h1>
+        <h1 className={styles.title}>ティア表(Tier表)メーカー</h1>
         <TierList />
         <UsageGuide />
         <FAQ />
