@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useTierList } from '@/hooks/useTierList'
 import TierGroup from '../TierGroup'
 import styles from './styles.module.scss'
+import { isMobile } from '@/utils/device'
 import html2canvas from 'html2canvas'
 
 export default function TierList() {
@@ -84,6 +85,9 @@ export default function TierList() {
           すべて削除
         </button>
       </div>
+      {isMobile() && (
+        <p className={styles.mobileHint}>長押しで移動できるよ！</p>
+      )}
       <div ref={tierListRef} className={styles.tierList}>
         {tierList.groups.map((group) => (
           <TierGroup
