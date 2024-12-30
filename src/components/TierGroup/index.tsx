@@ -145,7 +145,16 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
                 <button
                   key={rank}
                   className={styles.menuItem}
-                  onClick={() => handleMoveToRank(rank as TierRank)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    handleMoveToRank(rank as TierRank)
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    handleMoveToRank(rank as TierRank)
+                  }}
                 >
                   {rank}ランクへ移動
                 </button>
@@ -153,7 +162,15 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
             )}
             <button
               className={styles.menuItem}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                if (selectedItem) onRemoveItem(selectedItem)
+                setShowMobileMenu(false)
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
                 if (selectedItem) onRemoveItem(selectedItem)
                 setShowMobileMenu(false)
               }}
