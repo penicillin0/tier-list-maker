@@ -15,6 +15,10 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
+  const lastTapRef = useRef<{ time: number; id: string | null }>({
+    time: 0,
+    id: null,
+  })
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
@@ -53,17 +57,21 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     }
   }
 
-  const handleTouchStart = (e: React.TouchEvent, item: TierItem) => {
-    const longPressTimer = setTimeout(() => {
+  const handleTap = (e: React.TouchEvent, item: TierItem) => {
+    e.preventDefault()
+    const now = Date.now()
+    const DOUBLE_TAP_DELAY = 300
+
+    if (
+      lastTapRef.current.time > now - DOUBLE_TAP_DELAY &&
+      lastTapRef.current.id === item.id
+    ) {
+      // Double tap detected
       handleLongPress(e, item.id)
-    }, 500)
-
-    const handleTouchEnd = () => {
-      clearTimeout(longPressTimer)
-      document.removeEventListener('touchend', handleTouchEnd)
+      lastTapRef.current = { time: 0, id: null }
+    } else {
+      lastTapRef.current = { time: now, id: item.id }
     }
-
-    document.addEventListener('touchend', handleTouchEnd)
   }
 
   return (
@@ -83,8 +91,8 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
               key={item.id}
               className={styles.item}
               draggable={!isMobile()}
-              onDragStart={(e) => handleDragStart(e, item)}
-              onTouchStart={(e) => handleTouchStart(e, item)}
+              onDragStart={(e) => !isMobile() && handleDragStart(e, item)}
+              onTouchStart={(e) => handleTap(e, item)}
               onContextMenu={(e) => {
                 e.preventDefault()
                 handleLongPress(e, item.id)
