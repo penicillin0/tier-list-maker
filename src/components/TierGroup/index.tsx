@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { TierGroup as TierGroupType, TierItem, TierRank } from '@/types'
 import styles from './styles.module.scss'
 import Image from 'next/image'
@@ -22,6 +22,27 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     e.preventDefault()
   }
 
+  const preventTouchMove = (e: TouchEvent) => {
+    if (showMobileMenu) {
+      e.preventDefault()
+    }
+  }
+
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.addEventListener('touchmove', preventTouchMove, {
+        passive: false,
+      })
+      document.addEventListener('touchend', preventTouchMove, {
+        passive: false,
+      })
+    }
+    return () => {
+      document.removeEventListener('touchmove', preventTouchMove)
+      document.removeEventListener('touchend', preventTouchMove)
+    }
+  }, [showMobileMenu])
+
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault()
     const data = e.dataTransfer.getData('text/plain').split(',')
@@ -38,6 +59,7 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
     itemId: string
   ) => {
     e.preventDefault()
+    e.stopPropagation()
     const rect = (e.target as HTMLElement).getBoundingClientRect()
     setMenuPosition({
       x: rect.left,
@@ -72,6 +94,7 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
               key={item.id}
               className={styles.item}
               draggable={!isMobile()}
+              onTouchEnd={(e) => e.preventDefault()}
               onTouchStart={
                 isMobile()
                   ? (e) => handleDoubleTap(() => openMobileMenu(e, item.id))
@@ -104,6 +127,10 @@ export default function TierGroup({ group, onRemoveItem, onMoveItem }: Props) {
           <div
             className={styles.overlay}
             onClick={() => setShowMobileMenu(false)}
+            onTouchEnd={(e) => {
+              e.preventDefault()
+              setShowMobileMenu(false)
+            }}
           />
           <div
             className={styles.mobileMenu}

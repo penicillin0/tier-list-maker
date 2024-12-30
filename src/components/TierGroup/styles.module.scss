@@ -72,6 +72,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  touch-action: none;
 }
 
 .mobileMenu {
@@ -81,6 +82,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   z-index: 1001;
   min-width: 200px;
+  touch-action: none;
   overflow: hidden;
 }
 
